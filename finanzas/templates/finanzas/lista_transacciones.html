@@ -1,0 +1,30 @@
+{% extends 'finanzas/index.html' %}
+{% block title %}Transacciones{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Listado de Transacciones</h2>
+    {% if transacciones %}
+        <table class="table table-striped table-hover shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaccion in transacciones %}
+                    <tr>
+                        <td>{{ transaccion.fecha }}</td>
+                        <td>{{ transaccion.descripcion }}</td>
+                        <td>${{ transaccion.monto }}</td>
+                        <td>{{ transaccion.categoria }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay transacciones registradas.</p>
+    {% endif %}
+{% endblock %}
