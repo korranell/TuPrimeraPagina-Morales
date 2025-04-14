@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('finanzas.urls')),  # Incluye las URLs de la app "finanzas"
+    path('accounts/', include('django.contrib.auth.urls')),  # Para vistas de login/logout
 ]

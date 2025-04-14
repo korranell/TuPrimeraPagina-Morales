@@ -17,6 +17,23 @@
         </div>
     </nav>
 
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link" style="text-decoration: none;">Cerrar sesión</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Iniciar sesión</a> |
+        <a href="{% url 'registrarse' %}">Registrarse</a>
+    {% endif %}
+
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por descripción o categoría" value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+
     <div class="container">
         {% if messages %}
             {% for message in messages %}

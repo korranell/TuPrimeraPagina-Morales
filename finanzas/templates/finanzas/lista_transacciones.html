@@ -3,7 +3,7 @@
 
 {% block content %}
     <h2 class="mb-4">Listado de Transacciones</h2>
-    {% if transacciones %}
+    {% if transacciones is not none and transacciones %}
         <table class="table table-striped table-hover shadow-sm">
             <thead class="table-dark">
                 <tr>
@@ -20,6 +20,7 @@
                         <td>{{ transaccion.descripcion }}</td>
                         <td>${{ transaccion.monto }}</td>
                         <td>{{ transaccion.categoria }}</td>
+                        <td>{{ transaccion.usuario }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
