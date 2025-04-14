@@ -1,0 +1,36 @@
+{% extends 'finanzas/index.html' %}
+
+{% block title %}Agregar Transacción{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 fs-4">Agregar Nueva Transacción</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% if form %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                                <div class="text-danger small">
+                                    {{ field.errors|striptags }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-danger">Error: Form data is missing or invalid.</p>
+                {% endif %}
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">💾 Guardar Transacción</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

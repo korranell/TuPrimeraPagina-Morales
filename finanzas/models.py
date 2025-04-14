@@ -8,9 +8,9 @@ class Categoria(models.Model):
         return self.nombre
 
 class Transaccion(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     fecha = models.DateField()
-    categoria = models.CharField(max_length=100)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField()
 
@@ -19,4 +19,3 @@ class Transaccion(models.Model):
             return f"Transacción de {self.usuario.username}"
         else:
             return "Transacción sin usuario"
-    

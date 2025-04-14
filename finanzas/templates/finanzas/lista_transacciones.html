@@ -2,30 +2,42 @@
 {% block title %}Transacciones{% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">Listado de Transacciones</h2>
-    {% if transacciones is not none and transacciones %}
-        <table class="table table-striped table-hover shadow-sm">
-            <thead class="table-dark">
-                <tr>
-                    <th>Fecha</th>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>Categoría</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for transaccion in transacciones %}
-                    <tr>
-                        <td>{{ transaccion.fecha }}</td>
-                        <td>{{ transaccion.descripcion }}</td>
-                        <td>${{ transaccion.monto }}</td>
-                        <td>{{ transaccion.categoria }}</td>
-                        <td>{{ transaccion.usuario }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No hay transacciones registradas.</p>
-    {% endif %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center text-primary">Listado de Transacciones</h2>
+
+            {% if transacciones is not none and transacciones %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Monto</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaccion in transacciones %}
+                                <tr>
+                                    <td>{{ transaccion.fecha }}</td>
+                                    <td>{{ transaccion.descripcion }}</td>
+                                    <td><span class="badge bg-success">${{ transaccion.monto }}</span></td>
+                                    <td>{{ transaccion.categoria }}</td>
+                                    <td>{{ transaccion.usuario }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="alert alert-warning text-center" role="alert">
+                    No hay transacciones registradas.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
