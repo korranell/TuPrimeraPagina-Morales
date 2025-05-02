@@ -1,4 +1,4 @@
-{% extends 'finanzas/index.html' %}
+{% extends 'base.html' %}
 {% block title %}Transacciones{% endblock %}
 
 {% block content %}
@@ -14,9 +14,9 @@
                             <tr>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Descripción</th>
+                                <th scope="col">Categoria</th>
                                 <th scope="col">Monto</th>
-                                <th scope="col">Categoría</th>
-                                <th scope="col">Usuario</th>
+                                <th scope="col">Acciones</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -24,9 +24,18 @@
                                 <tr>
                                     <td>{{ transaccion.fecha }}</td>
                                     <td>{{ transaccion.descripcion }}</td>
-                                    <td><span class="badge bg-success">${{ transaccion.monto }}</span></td>
                                     <td>{{ transaccion.categoria }}</td>
-                                    <td>{{ transaccion.usuario }}</td>
+                                    <td><span class="badge bg-success">${{ transaccion.monto }}</span></td>
+                                    <td>
+                                        
+                                        <a href="{% url 'detalle_transaccion' transaccion.pk %}" class="btn btn-info btn-sm">Ver Detalle</a>
+                                        
+                                        
+                                        <a href="{% url 'modificar_transaccion' transaccion.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+                                        
+                                        
+                                        <a href="{% url 'eliminar_transaccion' transaccion.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

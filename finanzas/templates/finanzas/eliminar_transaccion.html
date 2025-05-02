@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center">Eliminar Transacción</h2>
+    <form method="POST" action="{% url 'eliminar_transaccion' transaccion.id %}" class="mt-4">
+        {% csrf_token %}
+        <div class="alert alert-warning" role="alert">
+            <p class="mb-0">¿Estás seguro de que deseas eliminar esta transacción? Esta acción no se puede deshacer.</p>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'lista_transacciones' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

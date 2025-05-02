@@ -23,7 +23,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="{% url 'lista_transacciones' %}">💰 Finanzas</a>
+            <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">💰 Finanzas</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,10 +31,19 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'agregar_transaccion' %}">+ Agregar transaccion</a>
+                            <a class="nav-link" href="{% url 'agregar_transaccion' %}"> Agregar </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'lista_transacciones' %}">Mis transacciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'editar' %}">Edita tu Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">Sobre Mi</a>
                         </li>
                         <li class="nav-item">
                             <form method="post" action="{% url 'logout' %}" class="d-inline">
@@ -42,12 +51,20 @@
                                 <button type="submit" class="btn nav-link btn-link text-white text-decoration-none">Cerrar sesión</button>
                             </form>
                         </li>
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/" target="_blank">Admin</a>
+                            </li>
+                        {% endif %}
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'registrarse' %}">Registrarse</a>
+                            <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">Sobre Mi</a>
                         </li>
                     {% endif %}
                 </ul>

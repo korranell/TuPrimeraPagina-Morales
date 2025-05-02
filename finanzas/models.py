@@ -1,21 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
+from django.contrib.auth.models import User 
+from django.conf import settings
 
 class Transaccion(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    fecha = models.DateField()
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    descripcion = models.CharField(max_length=255)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
-    descripcion = models.TextField()
+    fecha = models.DateField()
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    categoria = models.CharField(max_length=50, blank=True, null=True)  # Nueva categoría
+    imagen = models.ImageField(upload_to='transacciones/', null=True, blank=True)
 
     def __str__(self):
-        if self.usuario:
-            return f"Transacción de {self.usuario.username}"
-        else:
-            return "Transacción sin usuario"
+        return f"{self.descripcion} - {self.monto} - {self.fecha}"

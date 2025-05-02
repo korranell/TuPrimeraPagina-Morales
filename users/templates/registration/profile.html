@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container" style="
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+    font-family: 'Arial', sans-serif;">
+    
+    {% if user.image %}
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="{{ user.image.url }}" alt="Imagen de perfil" style="
+                width: 150px; 
+                height: 150px; 
+                border-radius: 50%; 
+                object-fit: cover; 
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        </div>
+    {% else %}
+        <p style="text-align: center; margin-bottom: 20px;">No hay imagen de perfil disponible.</p>
+    {% endif %}
+    
+    <h1 style="
+        text-align: center; 
+        color: #444; 
+        font-size: 2rem; 
+        margin-bottom: 20px;">
+        Perfil de Usuario
+    </h1>
+    
+    <div style="
+        margin-top: 20px; 
+        line-height: 1.6; 
+        color: #555;">
+        <p><strong style="color: #333;">Usuario:</strong> {{ user.username }}</p>
+        <p><strong style="color: #333;">Nombre:</strong> {{ user.get_full_name }}</p>
+        <p><strong style="color: #333;">Email:</strong> {{ user.email }}</p>
+        <p><strong style="color: #333;">Fecha de registro:</strong> {{ user.date_joined|date:"d M Y" }}</p>
+        <p><strong style="color: #333;">Fecha de cumpleaños:</strong> {{ user.fecha_nacimiento|date:"d M Y" }}</p>
+        <p><strong style="color: #333;">Biografía:</strong> {{ user.bio|default:"No disponible" }}</p>
+    </div>
+</div>
+{% endblock %}

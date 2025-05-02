@@ -1,4 +1,4 @@
-{% extends 'finanzas/index.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Agregar Transacción{% endblock %}
 
@@ -9,7 +9,7 @@
             <h2 class="mb-0 fs-4">Agregar Nueva Transacción</h2>
         </div>
         <div class="card-body">
-            <form method="post" novalidate>
+            <form method="post" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 {% if form %}
                     {% for field in form %}

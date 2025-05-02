@@ -1,21 +1,21 @@
 from django import forms
 from .models import Transaccion
-from django.contrib.auth.models import User
 
 class TransaccionForm(forms.ModelForm):
     class Meta:
         model = Transaccion
-        fields = ['fecha', 'categoria', 'monto', 'descripcion', 'usuario']
+        fields = ['descripcion', 'categoria', 'monto', 'fecha', 'imagen',]
         widgets = {
+            'descripcion': forms.TextInput(attrs={'placeholder': 'Descripción', 'class': 'form-control'}),
+            'categoria': forms.TextInput(attrs={'placeholder': 'Categoria', 'class': 'form-control'}),
+            'monto': forms.NumberInput(attrs={'placeholder': 'Monto', 'class': 'form-control'}),
             'fecha': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'categoria': forms.Select(attrs={'class': 'form-select'}),
-            'monto': forms.NumberInput(attrs={'class': 'form-control'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
-            'usuario': forms.Select(attrs={'class': 'form-select'}), 
+            'imagen': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
-
-    def __init__(self, *args, **kwargs):
-        super(TransaccionForm, self).__init__(*args, **kwargs)
-        if 'usuario' in self.fields:
-            self.fields['usuario'].queryset = User.objects.all()  
-            self.fields['usuario'].initial = None  
+        labels = {
+            'descripcion': 'Descripción',
+            'categoria': 'Categoria',
+            'monto': 'Monto',
+            'fecha': 'Fecha',
+            'imagen': 'Imagen',
+        }

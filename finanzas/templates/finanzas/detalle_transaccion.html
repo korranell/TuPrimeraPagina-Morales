@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="transaction-detail container mt-4">
+    <h2 class="text-center mb-4">Detalle de Transacción</h2>
+    <div class="card shadow-sm p-4">
+        <p><strong>Fecha:</strong> {{ transaccion.fecha }}</p>
+        <p><strong>Monto:</strong> {{ transaccion.monto }}</p>
+        <p><strong>Descripción:</strong> {{ transaccion.descripcion }}</p>
+        <p><strong>Categoría:</strong> {{ transaccion.categoria }}</p>
+        <p><strong>Imagen:</strong></p>
+        <img src="{{ transaccion.imagen.url }}" alt="Imagen de la transacción" class="img-fluid" style="max-width: 150px; height: auto;">
+    </div>
+    <div class="mt-4 d-flex justify-content-between">
+        <a href="{% url 'eliminar_transaccion' transaccion.id %}" class="btn btn-danger">
+            <i class="fas fa-trash-alt"></i> Eliminar
+        </a>
+        <a href="{% url 'lista_transacciones' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Volver a la lista
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,14 +1,14 @@
-{% extends 'finanzas/index.html' %}
+{% extends 'base.html' %}
 
-{% block title %}Registrarse{% endblock %}
+{% block title %}Iniciar Sesión{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
             <div class="card shadow-sm">
-                <div class="card-header bg-success text-white text-center">
-                    <h2 class="mb-0 fs-4">Crear una Cuenta</h2>
+                <div class="card-header bg-dark text-white text-center">
+                    <h2 class="mb-0 fs-4">Iniciar Sesión</h2>
                 </div>
                 <div class="card-body">
                     <form method="post" novalidate>
@@ -23,12 +23,12 @@
                             </div>
                         {% endfor %}
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Registrarse</button>
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <small>¿Ya tenés una cuenta? <a href="{% url 'login' %}">Iniciá sesión</a></small>
+                    <small>¿No tenés cuenta? <a href="{% url 'registro' %}">Registrate aquí</a></small>
                 </div>
             </div>
         </div>
