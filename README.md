@@ -24,3 +24,5 @@ Este proyecto es una aplicación web desarrollada con Django que permite a los u
 - HTML5 / CSS3 / Bootstrap 5
 - SQLite (por defecto)
 - Sistema de templates con herencia
+
+VIDEO: https://drive.google.com/file/d/1pOOJVQNdSLYCNIchzqBZYDQkHxSDt1ny/view?usp=drive_link
